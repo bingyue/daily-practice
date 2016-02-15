@@ -15,17 +15,19 @@ public class MergeSort {
 		
 		MergeSort tt=new MergeSort();
 		//测试整个排序
-		int[] A={1,2,3,5,2,3};
-		tt.mergeSort(A, 6);
-		for(int i=0;i<A.length;i++){
-			System.out.print(A[i]+",");			
-		}
+//		int[] A={1,2,3,5,2,3};
+//		tt.mergeSort(A, 6);
+//		for(int i=0;i<A.length;i++){
+//			System.out.print(A[i]+",");			
+//		}
 		//测试归并
 //		int[] arr={2,8,9,10,4,5,6,7};
 //		tt.merge(arr, 0, 4, 7);
-//		for(int i=0;i<arr.length;i++){
-//			System.out.print(arr[i]+",");			
-//		}
+		int[] arr={2,6,9,10,4,8,5,7};
+		tt.divideAndConquer(arr,0,arr.length);
+		for(int i=0;i<arr.length;i++){
+			System.out.print(arr[i]+",");			
+		}
 	}
 
 	/**
@@ -47,6 +49,16 @@ public class MergeSort {
 	 * 但是结合分治和递归的思想，就可以对任意无序数组进行排序
 	 */
 	public void divideAndConquer(int[] arr, int l,int r) {
+		int m=(l+r)/2;
+		/**
+		 * 分治
+		 */
+		divideAndConquer(arr,l,m);//对左边进行递归
+		divideAndConquer(arr,m+1,r);//对右边进行递归
+		/**
+		 * 归并操作会递归进行
+		 */
+		merge(arr,l,m-1,r);//
     }
 	
 	/**
