@@ -12,35 +12,33 @@ package bingyue.nowcoder;
 public class MergeSort {
 	
 	public static void main(String[] args){
-		
-		MergeSort tt=new MergeSort();
+
 		//测试整个排序
 //		int[] A={1,2,3,5,2,3};
-//		tt.mergeSort(A, 6);
-//		for(int i=0;i<A.length;i++){
-//			System.out.print(A[i]+",");			
-//		}
+//		mergeSort(A, 6);
+		int[] arr={10,9,8,7,6,5,4,3};
+		mergeSort(arr, arr.length);
 		//测试归并
 //		int[] arr={2,8,9,10,4,5,6,7};
-//		tt.merge(arr, 0, 4, 7);
-		int[] arr={2,6,9,10,4,8,5,7};
-		tt.divideAndConquer(arr,0,arr.length);
+//		merge(arr, 0, 4, 7);
+		//测试递归分治
+//		int[] arr={2,6,9,10,4,8,5,7};
+//		divideAndConquer(arr,0,arr.length-1);
 		for(int i=0;i<arr.length;i++){
 			System.out.print(arr[i]+",");			
 		}
 	}
 
 	/**
-	 * 归并排序的"分治"操作
-	 * 归并操作，只能对一个两部分分别有序的数组进行排序操作，
-	 * 但是结合分治和递归的思想，就可以对任意无序数组进行排序
+	 * 结合分治和归并即可实现归并排序
 	 */
-	public int[] mergeSort(int[] A, int n) {
+	public static int[] mergeSort(int[] A, int n) {
 		// write code here
 		if(A==null || A.length<2){
 			return A;
 		}
-		return null;
+		divideAndConquer(A,0,n-1);
+		return A;
     }
 	
 	/**
@@ -48,17 +46,36 @@ public class MergeSort {
 	 * 归并操作，只能对一个两部分分别有序的数组进行排序操作，
 	 * 但是结合分治和递归的思想，就可以对任意无序数组进行排序
 	 */
-	public void divideAndConquer(int[] arr, int l,int r) {
-		int m=(l+r)/2;
+	public static void divideAndConquer(int[] arr, int l,int r) {
 		/**
-		 * 分治
+		 * 递归函数都需要一个明确的终止条件，否则会死循环，导致StackOverflowError
+		 * 这里的递归什么时候停止？
+		 * 当有序区间的长度为0的时候，即输入的数组中l和r相等
+		 * 或者可以判断l<r的情况决定是否执行函数
 		 */
-		divideAndConquer(arr,l,m);//对左边进行递归
-		divideAndConquer(arr,m+1,r);//对右边进行递归
-		/**
-		 * 归并操作会递归进行
-		 */
-		merge(arr,l,m-1,r);//
+		if(l==r){
+			return;
+		}else{
+			/**
+			 * 注意对区间的选择，如果传入的l和r是下标值，即0到数组长度n-1，
+			 * 那么取m=(l+r)/2时，明显此时m位置的元素是包括在左路的
+			 */
+			int m=(l+r)/2;
+			/**
+			 * 左路递归的对l和m进行归并，
+			 * 最后一轮是l=0,r(即m)=1，继续操作r(即m)=0，递归终止
+			 */
+			divideAndConquer(arr,l,m);
+			/**
+			 * 右路递归的对l和m进行归并，
+			 */
+			divideAndConquer(arr,m+1,r);
+			/**
+			 * 这个m的取值可以想象一下，当有序区间长度为1，
+			 * 即l=0，m=0，r=1时，明显m即(l+r)/2，不需要再加减
+			 */
+			merge(arr,l,m,r);//
+		}
     }
 	
 	/**
@@ -73,7 +90,7 @@ public class MergeSort {
 	 * @param m 待归并数组中间的下标
 	 * @param r 待归并数组最右边的下标
 	 */
-	public void merge(int[] arr,int l,int m ,int r){
+	public static void merge(int[] arr,int l,int m ,int r){
 		//编程如做菜，准备好用到的变量等
 		int left_size=m-l; //"左侧"临时数组大小
 		int right_size=r-m+1; //"右侧"临时数组大小
