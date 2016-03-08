@@ -21,7 +21,7 @@ public class Common {
 	    * 在嵌套循环时如果B在此位置的值大于A的此位置，直接break，从A的下一个位置开始
 	    * 3.果然是考察代码，这就是高性能了，66666
 	    */
-	    public int[] findCommonParts(ListNode headA, ListNode headB) {
+	    public static int[] findCommonParts(ListNode headA, ListNode headB) {
 	    	if(headA==null || headB==null){
 	    		return null;
 	    	}
@@ -44,6 +44,7 @@ public class Common {
 	    		}
 	    	}
 	    	int[] result = new int[list.size()];
+	    	System.out.println(list.size());
 	    	//LinkedList的某些性质导致有问题
 	    	for(int i=0;i<list.size();i++){
 	    		result[i]=list.pollLast();
@@ -71,4 +72,25 @@ public class Common {
 		  }
 		  return res;
 	}
+	    
+	  public static void main(String[] args){
+		  ListNode HeadA=new ListNode(1);
+		  ListNode Head1=new ListNode(2);
+		  ListNode Head2=new ListNode(5);
+		  HeadA.next=Head1;
+		  Head1.next=Head2;
+		  
+		  ListNode HeadB=new ListNode(1);
+		  ListNode Head3=new ListNode(3);
+		  ListNode Head4=new ListNode(5);
+		  ListNode Head5=new ListNode(7);
+		  HeadB.next=Head3;
+		  Head3.next=Head4;
+		  Head4.next=Head5;
+		  
+		  int[] result=findCommonParts(HeadA,HeadB);
+		  for(int i=0;i<result.length;i++){
+			  System.out.println(result[i]);
+	    	}
+	  }
 }
