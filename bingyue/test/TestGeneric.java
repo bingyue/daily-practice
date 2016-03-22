@@ -3,8 +3,6 @@ package bingyue.test;
 import java.util.GregorianCalendar;
 import java.util.Calendar;
 
-
-
 /**
  * <T extends Comparable<T>>
  * 对泛型约束，T必须是Comparable的子类

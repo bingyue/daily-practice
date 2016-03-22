@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class TestObj {
+public class MessCodeTest {
 
 	public static void main(String[] args){
 
