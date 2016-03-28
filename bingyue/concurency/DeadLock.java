@@ -62,6 +62,4 @@ public class DeadLock implements Runnable{
 	                    System.out.println(name+"继续执行得到obj1的同步锁");  
 	                }   }  }
 		}
-	
-
 }
