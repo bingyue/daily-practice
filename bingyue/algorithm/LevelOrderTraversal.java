@@ -44,11 +44,10 @@ public class LevelOrderTraversal {
     	   List<Integer> temp=new ArrayList<>();
     	   /**
     	    * error!这里对进行循环的过程，队列长度是在不断变化的
-    	    * size需要等于队列出队前的长度，
-    	    * 本来要再嵌套一个while循环，这样就死循环了！
+    	    * size需要等于队列出队前的长度
     	    */
     	   int size =queue.size();
-    	   for(int i=0;i<queue.size();i++){
+    	   for(int i=0;i<size;i++){
     		   TreeNode node=queue.poll();
     		   temp.add(node.val);
     		   if(node.left!=null)
