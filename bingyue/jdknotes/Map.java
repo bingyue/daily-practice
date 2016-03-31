@@ -15,9 +15,7 @@ public interface Map<K,V> {
 		public abstract Object getValue();
 		//设置Entry的value  
 		public abstract Object setValue(Object obj);
-
 		public abstract boolean equals(Object obj);
-
 		public abstract int hashCode();
 	}
 	
