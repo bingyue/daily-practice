@@ -12,18 +12,8 @@ package bingyue.nowcoder;
 public class MergeSort {
 	
 	public static void main(String[] args){
-
-		//测试整个排序
-//		int[] A={1,2,3,5,2,3};
-//		mergeSort(A, 6);
 		int[] arr={10,9,8,7,6,5,4,3};
 		mergeSort(arr, arr.length);
-		//测试归并
-//		int[] arr={2,8,9,10,4,5,6,7};
-//		merge(arr, 0, 4, 7);
-		//测试递归分治
-//		int[] arr={2,6,9,10,4,8,5,7};
-//		divideAndConquer(arr,0,arr.length-1);
 		for(int i=0;i<arr.length;i++){
 			System.out.print(arr[i]+",");			
 		}
