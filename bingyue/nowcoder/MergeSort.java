@@ -55,7 +55,7 @@ public class MergeSort {
 		 */
 		if(l==r){
 			return;
-		}else{
+		}
 			/**
 			 * 注意对区间的选择，如果传入的l和r是下标值，即0到数组长度n-1，
 			 * 那么取m=(l+r)/2时，明显此时m位置的元素是包括在左路的
@@ -74,83 +74,51 @@ public class MergeSort {
 			 * 这个m的取值可以想象一下，当有序区间长度为1，
 			 * 即l=0，m=0，r=1时，明显m即(l+r)/2，不需要再加减
 			 */
-			merge(arr,l,m,r);//
-		}
+			merge(arr,l,m,r);//进行merge操作的递归栈最深层此时是merge(arr,0,0,1)
     }
 	
 	/**
 	 * 归并排序的"归并"操作
 	 * 归并特别容易出错，特别是丢失比较数据，不要漏了数组末位的元素
-	 * 现在以数组{2,8,9,10,4,5,6,7,}为例
-	 * 模拟一次二路归并的过程
 	 * 这个视频讲的不错:
 	 * http://www.tudou.com/listplay/goytvXDql0w/hFFCJz8mBDM.html
-	 * @param arr 待归并的数组，这个数组可能只是整个数组中的一部分，所以需要下标来确定
-	 * @param l 待归并数组最左边的下标
-	 * @param m 待归并数组中间的下标
-	 * @param r 待归并数组最右边的下标
 	 */
-	public static void merge(int[] arr,int l,int m ,int r){
-		//编程如做菜，准备好用到的变量等
-		int left_size=m-l; //"左侧"临时数组大小
-		int right_size=r-m+1; //"右侧"临时数组大小
-		int[] left=new int[left_size]; //初始化
-		int[] right=new int[right_size]; //初始化
-		int i,j,k;
-		
-		/**
-		 * 1.向左临时数组填充数据
-		 * error:粗心操作两个临时数组的赋值
-		 */
-		for(i=l;i<m;i++)
-			//这里用i-l表示left的下标,对应arr从l到m-,下面类似
-			left[i-l]=arr[i];
-		/**
-		 * 2.向右侧临时数组赋值
-		 * 注意这里容易出问题：j作为下标的区间应该是m~r,也就是说j<=r,或者j<r+1,
-		 * 否则会丢失右侧最末位的数据，如果最后结果出现0,，一般是数组末位元素没处理好
-		 * 这里为了记住这一点，将向左右两个临时数组赋值分成两步记忆
-		 */
-		for(j=m;j<r+1;j++)
-			//这里用j-m表示right的下标,对应arr从m到r,下面类似
-			right[j-m]=arr[j];
-
-		/**
-		 * 3.依次比较左右两个数组，并且合并填充到最开始的arr数组
-		 * 此时i,j,k分别指向left的下标，right的下标，以及arr的下标
-		 * 此时认为arr是空的,
-		 * left{2,8,9,10}
-		 * right{4,5,6,7}
-		 * 这里用while循环最合适
-		 */
-		i=0;j=0;k=l;
-		while(i<left_size && j<right_size){
-			if(left[i]<right[j]){//左侧数组的较小，填入arr
-				arr[k]=left[i];
-				i++;
-				k++;
-			}else{
-				arr[k]=right[j];//右侧数组的较小，将右侧填入arr
-				j++;
-				k++;
-			}
-		}
-		
-		/**
-		 * 4.如果完成了左右两个数组的填充和对比，其中一个数组依然有余下的部分，
-		 * 那么直接将其全部填充到arr数组中就可以
-		 */
-		while(i<left_size){//"左侧"数组有剩余
-			arr[k]=left[i];
-			i++;k++;
-		}
-		
-		while(j<right_size){//"右侧"数组有剩余
-			arr[k]=right[j];
-			j++;k++;
-		}
-		
-	}
+	public static void merge(int[] arr, int left, int mid, int right) {
+		//临时数组
+        int[] help = new int[right - left + 1];
+        int l = left;//0
+        int r = mid + 1;//1
+        int index = 0;//临时数组的下标指针
+        while (l <= mid && r <= right) {//确保合并操作不越界
+        	/**
+        	 * 比较递归深层arr数组的两个元素，
+        	 * 把小的那个放在临时数组中
+        	 * 然后向上，最深层肯定执行一次就退出
+        	 */
+            if (arr[l] <= arr[r]) {
+            	 help[index] = arr[l];
+                 index++;
+                 l++;
+            } else {
+                help[index] = arr[r];
+                index++;
+                r++;
+            }
+        }
+        
+       //如果左侧比较完了还有剩余，肯定左侧剩下的都大，全部赋值
+        while (l <= mid) {
+            help[index++] = arr[l++];
+        }
+        //如果右侧比较完了还剩余，剩下的肯定都大，全部赋值到临时数组
+        while (r <= right) {
+            help[index++] = arr[r++];
+        }
+        //最后用整个临时数组的元素替换待排序数组
+        for (int i = 0; i < help.length; i++) {
+            arr[left + i] = help[i];
+        }
+    }
 	
 
 }
