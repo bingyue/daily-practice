@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 /**
  * 针对HashMap的value进行排序 
- *
+ * @author Bingyue
  */
 public class HashMapSort {
 
@@ -33,6 +33,10 @@ public class HashMapSort {
             System.out.println(sortedkey+map.get(sortedkey));
         }
  
+//        Collections.sort(list);
+//          Collections.sort(list, c);
+        
+        
         /**
          * 转换为有序的list进行排序
          */

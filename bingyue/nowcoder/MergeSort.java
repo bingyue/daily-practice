@@ -104,7 +104,7 @@ public class MergeSort {
         while (r <= right) {
             help[index++] = arr[r++];
         }
-        //最后用整个临时数组的元素替换待排序数组
+        //最后用整个临时数组的元素替换待排序数组中这一次归并的区间
         for (int i = 0; i < help.length; i++) {
             arr[left + i] = help[i];
         }
