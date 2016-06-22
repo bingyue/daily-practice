@@ -1,4 +1,4 @@
-package me.bingyue.daily.test;
+package me.bingyue.test;
 
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
