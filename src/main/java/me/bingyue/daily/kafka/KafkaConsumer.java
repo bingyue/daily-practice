@@ -20,6 +20,10 @@ public class KafkaConsumer extends Thread{
         this.topic = topic;  
     }  
       
+    public static void main(String[] args) {  
+    	KafkaConsumer kafkaConsumer= new KafkaConsumer("distributedlog");// 使用kafka集群中创建好的主题   
+    	kafkaConsumer.start();
+    }  
       
     @Override  
     public void run() {  
@@ -29,6 +33,7 @@ public class KafkaConsumer extends Thread{
          Map<String, List<KafkaStream<byte[], byte[]>>>  messageStreams = consumer.createMessageStreams(topicCountMap);  
          KafkaStream<byte[], byte[]> stream = messageStreams.get(topic).get(0);// 获取每次接收到的这个数据  
          ConsumerIterator<byte[], byte[]> iterator =  stream.iterator();  
+         System.out.println("*********Results********"); 
          while(iterator.hasNext()){  
              String message = new String(iterator.next().message());  
              System.out.println("接收到: " + message);  
@@ -43,8 +48,5 @@ public class KafkaConsumer extends Thread{
      }  
       
       
-    public static void main(String[] args) {  
-        new KafkaConsumer("distributedlog").start();// 使用kafka集群中创建好的主题   
-          
-    }  
+  
 }

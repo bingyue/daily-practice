@@ -1,7 +1,6 @@
 package me.bingyue.daily.kafka;
 
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
@@ -9,23 +8,32 @@ import kafka.producer.ProducerConfig;
 import kafka.serializer.StringEncoder;
 
 public class KafkaProducer extends Thread{
+	
 	private String topic;  
     
     public KafkaProducer(String topic){  
         super();  
         this.topic = topic;  
     }  
+    
+    public static void main(String[] args) {  
+    	KafkaProducer kafkaProducer=  new KafkaProducer("distributedlog");// 使用kafka集群中创建好的主题   
+    	kafkaProducer.start();
+    }  
       
       
     @Override  
     public void run() {  
         Producer producer = createProducer();  
+        System.out.println("*********send********"); 
         int i=0;  
         while(true){  
         	i++;
-            producer.send(new KeyedMessage<Integer, String>(topic, "这是第一条" +i+"日志"));  
+        	String message="第一条" +i+"日志";
+            producer.send(new KeyedMessage<Integer, String>(topic, message));  
+            System.out.println("发送"+message); 
             try {  
-                TimeUnit.SECONDS.sleep(1);  
+                Thread.sleep(1000);  
             } catch (InterruptedException e) {  
                 e.printStackTrace();  
             }  
@@ -41,8 +49,5 @@ public class KafkaProducer extends Thread{
      }  
       
       
-    public static void main(String[] args) {  
-        new KafkaProducer("distributedlog").start();// 使用kafka集群中创建好的主题   
-          
-    }  
+    
 }
