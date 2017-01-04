@@ -14,7 +14,13 @@
     <groupId>org.mongodb</groupId>
     <artifactId>mongo-java-driver</artifactId>
     <version>3.0.0</version>
-</dependency>
+   </dependency>
+
+  <dependency>
+	<groupId>org.apache.kafka</groupId>
+	<artifactId>kafka_2.9.2</artifactId>
+	<version>0.8.1</version>
+  </dependency>
 
 	</dependencies>
   
