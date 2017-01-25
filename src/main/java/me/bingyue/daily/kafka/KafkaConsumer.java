@@ -21,7 +21,7 @@ public class KafkaConsumer extends Thread{
     }  
       
     public static void main(String[] args) {  
-    	KafkaConsumer kafkaConsumer= new KafkaConsumer("distributedlog");// 使用kafka集群中创建好的主题   
+    	KafkaConsumer kafkaConsumer= new KafkaConsumer("test");// 使用kafka集群中创建好的主题   
     	kafkaConsumer.start();
     }  
       
@@ -42,8 +42,8 @@ public class KafkaConsumer extends Thread{
   
     private ConsumerConnector createConsumer() {  
         Properties properties = new Properties();  
-        properties.put("zookeeper.connect", "192.168.109.58:2182,192.168.109.70:2182,192.168.109.91:2182");//声明zk
-        properties.put("group.id", "logstash");// 必须要使用别的组名称， 如果生产者和消费者都在同一组，则不能访问同一组内的topic数据  
+        properties.put("zookeeper.connect", "127.0.0.1:2182,127.0.0.1:2182");//声明zk
+        properties.put("group.id", "test");// 必须要使用别的组名称， 如果生产者和消费者都在同一组，则不能访问同一组内的topic数据  
         return Consumer.createJavaConsumerConnector(new ConsumerConfig(properties));  
      }  
       

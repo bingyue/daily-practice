@@ -17,7 +17,7 @@ public class KafkaProducer extends Thread{
     }  
     
     public static void main(String[] args) {  
-    	KafkaProducer kafkaProducer=  new KafkaProducer("distributedlog");// 使用kafka集群中创建好的主题   
+    	KafkaProducer kafkaProducer=  new KafkaProducer("test");// 使用kafka集群中创建好的主题   
     	kafkaProducer.start();
     }  
       
@@ -42,9 +42,9 @@ public class KafkaProducer extends Thread{
   
     private Producer createProducer() {  
         Properties properties = new Properties();  
-        properties.put("zookeeper.connect", "192.168.109.58:2182,192.168.109.70:2182,192.168.109.91:2182");//声明zk  
+        properties.put("zookeeper.connect", "127.0.0.1:2182,127.0.0.1:2182");//声明zk  
         properties.put("serializer.class", StringEncoder.class.getName());  
-        properties.put("metadata.broker.list", "192.168.109.58:9092,192.168.109.70:9092,192.168.109.91:9092");// 声明kafka broker  
+        properties.put("metadata.broker.list", "127.0.0.1:9092,127.0.0.1:9092");// 声明kafka broker  
         return new Producer<Integer, String>(new ProducerConfig(properties));  
      }  
       
