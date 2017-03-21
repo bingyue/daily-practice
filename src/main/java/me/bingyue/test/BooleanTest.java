@@ -1,27 +1,24 @@
 package me.bingyue.test;
 
-import java.util.Map;
-
-import me.bingyue.daily.jdknotes.HashMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BooleanTest {
 
 	public static void main(String[] args){
-		
-//		Map<Integer,Integer> map=new HashMap<>();
-//		map.put(1, 10);
-//		map.put(2, 20);
-//		if(map.get(1).equals("10")){//视频
-//			System.out.print("1success");
-//		}
-//		if(map.get(1).equals(10)){//图集
-//			System.out.print("2success");
-//		}	
-		
-		int a=100;
-		Integer b=new Integer(100);
-		System.out.println(a==b);
-		System.out.println(b.equals(a));
+		SimpleDateFormat format =  new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+		try {
+		int timeStamp=1488452129;
+		Long time=new Long(timeStamp);
+		String d = format.format(time);
+		Date date = format.parse(d);
+		System.out.println(date);
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
