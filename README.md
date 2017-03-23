@@ -1,2 +1,2 @@
-## daily-practice
-#### daily practice code
+## 日常练习
+#### Java应用笔记
