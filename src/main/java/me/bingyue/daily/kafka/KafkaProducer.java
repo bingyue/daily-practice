@@ -27,24 +27,21 @@ public class KafkaProducer extends Thread{
         Producer producer = createProducer();  
         System.out.println("*********send********"); 
         int i=0;  
-        while(true){  
-        	i++;
-        	String message="第一条" +i+"日志";
+        	String message="测试error日志";
             producer.send(new KeyedMessage<Integer, String>(topic, message));  
             System.out.println("发送"+message); 
             try {  
                 Thread.sleep(1000);  
             } catch (InterruptedException e) {  
                 e.printStackTrace();  
-            }  
-        }  
+            }   
     }  
   
     private Producer createProducer() {  
         Properties properties = new Properties();  
         //properties.put("zookeeper.connect", "127.0.0.1:2182,127.0.0.1:2182");//声明zk  
         properties.put("serializer.class", StringEncoder.class.getName());  
-        properties.put("metadata.broker.list", "127.0.0.1:9092,127.0.0.1:9092");// 声明kafka broker  
+        properties.put("metadata.broker.list", "192.168.109.58:9092,192.168.109.70:9092,192.168.109.91:9092");// 声明kafka broker  
         properties.put("request.required.acks", "1");
         return new Producer<Integer, String>(new ProducerConfig(properties));  
      }  
