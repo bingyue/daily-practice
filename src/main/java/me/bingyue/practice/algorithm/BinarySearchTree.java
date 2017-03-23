@@ -1,4 +1,4 @@
-package me.bingyue.practice.datastructer;
+package me.bingyue.practice.algorithm;
 
 /**
  * 主要参考《数据结构与算法分析—Java语言实现》

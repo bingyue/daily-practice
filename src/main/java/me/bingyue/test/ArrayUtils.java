@@ -1,4 +1,4 @@
-package me.bingyue.practice.util;
+package me.bingyue.test;
 
 /**
  * 数组工具类

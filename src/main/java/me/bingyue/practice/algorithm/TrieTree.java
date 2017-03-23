@@ -1,4 +1,4 @@
-package me.bingyue.practice.datastructer;
+package me.bingyue.practice.algorithm;
 
 /**
  * TrieTree

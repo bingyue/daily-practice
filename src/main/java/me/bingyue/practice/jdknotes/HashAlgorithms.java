@@ -1,4 +1,4 @@
-package me.bingyue.practice.lang;
+package me.bingyue.practice.jdknotes;
 
 /**
  * Hash算法整理
