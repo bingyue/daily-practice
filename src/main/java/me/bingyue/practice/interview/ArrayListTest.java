@@ -12,7 +12,7 @@ import java.util.List;
 public class ArrayListTest {
 
 	public static void main(String[] args){
-		ArrayList<Object> list=new ArrayList<>();
+		ArrayList<Object> list=new ArrayList();
 		for(int i=0;i<10000;i++){
 			list.add(i);
 		}

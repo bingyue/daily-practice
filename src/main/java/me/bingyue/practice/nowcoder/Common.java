@@ -31,8 +31,9 @@ public class Common {
 	    	 * Java刷题就是坑，
 	    	 * int[] result = new int[500]这种初始化会默认构造一个500个元素都是0的数组
 	    	 */
-	    	LinkedList<Integer> list=new LinkedList<>();//LinkedList的几个方法还要去看一下
-	    	while(headA!=null && headB!=null){
+	    	LinkedList<Integer> list;//LinkedList的几个方法还要去看一下
+			list = new LinkedList<Integer>();
+			while(headA!=null && headB!=null){
 	    	    if(headA.val<headB.val){
 	    			headA=headA.next;
 	    		}else if(headA.val>headB.val){

@@ -27,7 +27,7 @@ public class LevelOrderTraversal {
 	 * 调整进出队列的顺序以实现层序遍历
 	 */
 	public List<List<Integer>> levelOrder(TreeNode root) {
-		 List<List<Integer>> result=new ArrayList<>();
+		 List<List<Integer>> result=new ArrayList<List<Integer>>();
 		 
          if(root==null){
         	return result; 
@@ -37,11 +37,11 @@ public class LevelOrderTraversal {
          * 一般来说，队列的实现选择LinkedList即可
          * 队列保存节点就不用找什么变量了
          */
-        Queue<TreeNode> queue=new LinkedList<>();
+        Queue<TreeNode> queue=new LinkedList<TreeNode>();
         queue.offer(root);
         //首先把头结点的值保存到结果集，然后把左右子节点分别进入队列
        while(!queue.isEmpty()){//需要使用isEmptyy判断，不能使用null
-    	   List<Integer> temp=new ArrayList<>();
+    	   List<Integer> temp=new ArrayList<Integer>();
     	   /**
     	    * error!这里对进行循环的过程，队列长度是在不断变化的
     	    * size需要等于队列出队前的长度

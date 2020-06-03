@@ -14,22 +14,23 @@ public class CallableAndFuture {
 
 	public static void main(String[] args) {
 		
-		Callable<Integer> callable=new Callable<Integer>() {
-	
+		Callable<Integer> callable;
+		callable = new Callable<Integer>() {
+
 			@Override
 			public Integer call() throws Exception {
 				// 添加回调函数的返回结果
 				return new Random().nextInt(100);
 			}
 		};
-		
+
 		/**
 		 * FutureTask实现了RunnableFuture接口，
 		 * Java中类的继承只支持单继承，但Java接口可以多继承，
 		 * RunnableFuture继承了Runnable, Future<V>两个父接口
 		 * 注意：如果在两个父接口中分别定义了名称和参数都相同，而返回结果却不同的方法，会有编译时错误。
 		 */
-		FutureTask<Integer> future =new FutureTask<>(callable);
+		FutureTask<Integer> future = new FutureTask(callable);
 		/**
 		 * 启动一个线程
 		 * FutureTask继承了Runnable接口,可以被线程执行。
