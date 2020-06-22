@@ -2,7 +2,7 @@ package me.bingyue.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 public class BooleanTest {
 

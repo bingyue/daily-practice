@@ -1,5 +1,7 @@
 package me.bingyue.sword;
 
+import java.util.*;
+
 public class Union {
 
     class UF {
@@ -57,7 +59,26 @@ public class Union {
         }
     }
 
+    public Object[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set = new HashSet<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums1.length; i++) {
+            map.put(nums1[i], i);
+        }
+
+        for (int j = 0; j < nums2.length; j++) {
+            if (map.containsKey(nums2[j])) {
+                set.add(nums2[j]);
+            }
+        }
+
+        set.stream().toArray();
+
+        return set.toArray();
+    }
+
     public int findCircleNum(int[][] M) {
+
         int n = M.length;
         UF uf = new UF(n);
         for (int i = 0; i < n; i++) {
